@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Robust Promptable Video Object Segmentation">
+  <meta name="keywords" content="Video Object Segmentation, Robustness, SAM2, PVOS">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robust Promptable Video Object Segmentation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://sohyun-l.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Robust Promptable Video Object Segmentation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://sohyun-l.github.io">Sohyun Lee</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://yehogwon.github.io/">Yeho Gwon</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=rw4oNkYAAAAJ&hl=de">Lukas Hoyer</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://igp.ethz.ch/personen/person-detail.html?persid=143986">Konrad Schindler</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://people.ee.ethz.ch/~csakarid/">Christos Sakaridis</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://suhakwak.github.io/">Suha Kwak</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>POSTECH,</span>
+            <span class="author-block"><sup>2</sup>Google,</span>
+            <span class="author-block"><sup>3</sup>ETH Zurich</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="font-weight: bold;">CVPR 2026</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <img src="./static/images/teaser-1.png" alt="Teaser figure showing the goal and benchmark composition of RobustPVOS." style="width: 100%;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The performance of promptable video object segmentation (PVOS) models substantially degrades under input corruptions, which prevents PVOS deployment in safety-critical domains. This paper offers the first comprehensive study on robust PVOS (RobustPVOS). We first construct a new, comprehensive benchmark with two real-world evaluation datasets of 351 video clips and more than 2,500 object masks under real-world adverse conditions. At the same time, we generate synthetic training data by applying diverse and temporally varying corruptions to existing VOS datasets. Moreover, we present a new RobustPVOS method, dubbed Memory-object-conditioned Gated-rank Adaptation (MoGA). The key to successfully performing RobustPVOS is two-fold: effectively handling object-specific degradation and ensuring temporal consistency in predictions. MoGA leverages object-specific representations maintained in memory across frames to condition the robustification process, which allows the model to handle each tracked object differently in a temporally consistent way. Extensive experiments on our benchmark validate MoGA's efficacy, showing consistent and significant improvements across diverse corruption types on both synthetic and real-world datasets, establishing a strong baseline for future RobustPVOS research. Our benchmark will be made publicly available.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Method -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method: MoGA</h2>
+        <div class="content has-text-justified">
+          <p>
+            We propose <strong>Memory-object-conditioned Gated-rank Adaptation (MoGA)</strong> for RobustPVOS.
+            MoGA decomposes the weight matrix of a low-rank adapter into rank-1 components and selectively activates them using object-specific representations from the memory bank.
+            This design enables the adapter to handle distinct objects differently while ensuring temporal consistency.
+          </p>
+        </div>
+        <img src="./static/images/architecture-1.png" alt="Architecture of MoGA" style="width: 100%;">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Benchmark -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">RobustPVOS Benchmark</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present the first RobustPVOS benchmark suite that includes manually annotated real-world evaluation datasets under adverse conditions and a synthetic corruption dataset with temporally varying degradation patterns.
+          </p>
+        </div>
+        <img src="./static/images/benchmark-1.png" alt="Benchmark dataset examples" style="width: 100%;">
+
+        <!-- Dataset Statistics Table -->
+        <div class="content" style="margin-top: 1.5rem;">
+          <table class="table is-bordered is-striped is-hoverable" style="margin: 0 auto;">
+            <thead>
+              <tr>
+                <th>Dataset</th>
+                <th>Clips</th>
+                <th>Frames</th>
+                <th>Objects</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="4" style="font-weight:bold; background-color: #f5f5f5;">Real-world Evaluation Set</td>
+              </tr>
+              <tr>
+                <td>ACDC-Video</td>
+                <td>149</td>
+                <td>3,259</td>
+                <td>613</td>
+              </tr>
+              <tr>
+                <td>MVSeg</td>
+                <td>202</td>
+                <td>13,581</td>
+                <td>1,930</td>
+              </tr>
+              <tr>
+                <td colspan="4" style="font-weight:bold; background-color: #f5f5f5;">Synthetic Training Set</td>
+              </tr>
+              <tr>
+                <td>MOSE-C + DAVIS-C + YouTube-VOS-C</td>
+                <td>46,768</td>
+                <td>1,774,560</td>
+                <td>3,872,048</td>
+              </tr>
+              <tr>
+                <td colspan="4" style="font-weight:bold; background-color: #f5f5f5;">Synthetic Evaluation Set</td>
+              </tr>
+              <tr>
+                <td>YouTube-VOS-C</td>
+                <td>507</td>
+                <td>13,710</td>
+                <td>25,574</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Dataset Download -->
+<section class="section" style="background-color: #f5f5f5;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Dataset Download</h2>
+        <div class="content has-text-justified">
+          <p>
+            We release the two real-world evaluation test sets of our RobustPVOS benchmark.
+            Each dataset contains video clips captured under natural adverse conditions (fog, rain, snow, nighttime, low light, motion blur, etc.) with dense, per-object, pixel-level annotations.
+          </p>
+        </div>
+        <div class="columns is-centered" style="margin-top: 1rem;">
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">RobustPVOS ACDC-Video Test</h3>
+              <p>149 clips &middot; 3,259 frames &middot; 613 objects</p>
+              <p style="font-size: 0.9em; color: #666;">Fog, snow, rain, nighttime conditions</p>
+              <a href="#" class="button is-link is-rounded" style="margin-top: 0.75rem;">
+                <span class="icon"><i class="fas fa-download"></i></span>
+                <span>Download</span>
+              </a>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="box">
+              <h3 class="title is-5">RobustPVOS MVSeg Test</h3>
+              <p>202 clips &middot; 13,581 frames &middot; 1,930 objects</p>
+              <p style="font-size: 0.9em; color: #666;">Low light, rain, snow, noise, motion blur</p>
+              <a href="#" class="button is-link is-rounded" style="margin-top: 0.75rem;">
+                <span class="icon"><i class="fas fa-download"></i></span>
+                <span>Download</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Qualitative Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Qualitative Results</h2>
+        <img src="./static/images/qualitative-1.png" alt="Qualitative results" style="width: 100%; margin-bottom: 1rem;">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{lee2026robustpvos,
+  author    = {Lee, Sohyun and Gwon, Yeho and Hoyer, Lukas and Schindler, Konrad and Sakaridis, Christos and Kwak, Suha},
+  title     = {Robust Promptable Video Object Segmentation},
+  booktitle = {CVPR},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            The template is borrowed from <a href="https://nerfies.github.io/">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
